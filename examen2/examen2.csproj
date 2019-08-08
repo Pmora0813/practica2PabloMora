@@ -190,7 +190,6 @@
     <Content Include="Views\Restaurante\Details.cshtml" />
     <Content Include="Views\Restaurante\EditarRestaurante.cshtml" />
     <Content Include="Views\Restaurante\Index.cshtml" />
-    <Content Include="Views\Restaurante\_ordenarRestaurante.cshtml" />
     <Content Include="Views\Reserva\Create.cshtml" />
     <Content Include="Views\Reserva\Delete.cshtml" />
     <Content Include="Views\Reserva\Details.cshtml" />
