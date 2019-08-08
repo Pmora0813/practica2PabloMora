@@ -38,8 +38,9 @@ namespace examen2.Models
         public int idCategoria { get; set; }
 
         [Display(Name = "Precio por Comensal")]
-        [DisplayFormat(DataFormatString = "{0:N2}",
+        [DisplayFormat(DataFormatString = "{0:N0}",
             ApplyFormatInEditMode = true)]
+        [RegularExpression(@"[0-9]", ErrorMessage ="Solo numeros enteros")]
         public decimal precioxComensal { get; set; }
 
         [Display(Name = "Categoría")]

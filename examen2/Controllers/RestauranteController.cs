@@ -17,6 +17,13 @@ namespace examen2.Controllers
         // GET: Restaurante
         public ActionResult Index()
         {
+
+
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.Mensaje = TempData["mensaje"].ToString();
+            }
+
             var restaurante = db.Restaurante.Include(r => r.Categoria);
             return View(restaurante.ToList());
         }
@@ -53,10 +60,9 @@ namespace examen2.Controllers
             if (ModelState.IsValid)
             {
                 db.Restaurante.Add(restaurante);
-
-
-
                 db.SaveChanges();
+
+                TempData["mensaje"] = "El Restaurante Guardado con exito";
                 return RedirectToAction("Index");
             }
 
@@ -65,18 +71,20 @@ namespace examen2.Controllers
         }
 
         // GET: Restaurante/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult EditarRestaurante(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["mensaje"] = "Especifique un Restaurante";
+                return RedirectToAction("Index");
             }
             Restaurante restaurante = db.Restaurante.Find(id);
             if (restaurante == null)
             {
-                return HttpNotFound();
+                TempData["mensaje"] = "El Restaurante no existe";
+                return RedirectToAction("Index");
             }
-            ViewBag.idCategoria = new SelectList(db.Categoria, "idCategoria", "nombre", restaurante.idCategoria);
+            ViewBag.listaCategoria = new SelectList(db.Categoria, "idCategoria", "nombre", restaurante.idCategoria);
             return View(restaurante);
         }
 
@@ -85,15 +93,16 @@ namespace examen2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Restaurante restaurante)
+        public ActionResult EditarRestaurante(Restaurante restaurante)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(restaurante).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["mensaje"] = "El Restaurante Actualizado con exito";
                 return RedirectToAction("Index");
             }
-            ViewBag.idCategoria = new SelectList(db.Categoria, "idCategoria", "nombre", restaurante.idCategoria);
+            ViewBag.listaCategoria = new SelectList(db.Categoria, "idCategoria", "nombre", restaurante.idCategoria);
             return View(restaurante);
         }
 
