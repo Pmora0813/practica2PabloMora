@@ -26,6 +26,7 @@ namespace examen2.Models
         [Column(TypeName = "text")]
         [Required]
         [Display(Name = "Descripción")]
+        [DataType(DataType.MultilineText)]
         public string descripcion { get; set; }
 
         [Column(TypeName = "text")]
@@ -37,6 +38,8 @@ namespace examen2.Models
         public int idCategoria { get; set; }
 
         [Display(Name = "Precio por Comensal")]
+        [DisplayFormat(DataFormatString = "{0:N2}",
+            ApplyFormatInEditMode = true)]
         public decimal precioxComensal { get; set; }
 
         [Display(Name = "Categoría")]

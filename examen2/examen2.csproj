@@ -189,6 +189,7 @@
     <Content Include="Views\Restaurante\Details.cshtml" />
     <Content Include="Views\Restaurante\Edit.cshtml" />
     <Content Include="Views\Restaurante\Index.cshtml" />
+    <Content Include="Views\Restaurante\_ordenarRestaurante.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

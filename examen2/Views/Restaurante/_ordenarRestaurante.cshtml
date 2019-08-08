@@ -1,0 +1,27 @@
+﻿@model IEnumerable<examen2.Models.Restaurante>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        @*<td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.precioxComensal)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.idRestaurante }) @*|
+                @Html.ActionLink("Detalles", "Details", new { id=item.idRestaurante })*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.idRestaurante })*@
+        </td>
+    </tr>
+}

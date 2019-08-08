@@ -48,11 +48,14 @@ namespace examen2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idRestaurante,nombre,descripcion,direccion,idCategoria,precioxComensal")] Restaurante restaurante)
+        public ActionResult Create(Restaurante restaurante)
         {
             if (ModelState.IsValid)
             {
                 db.Restaurante.Add(restaurante);
+
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -82,7 +85,7 @@ namespace examen2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idRestaurante,nombre,descripcion,direccion,idCategoria,precioxComensal")] Restaurante restaurante)
+        public ActionResult Edit(Restaurante restaurante)
         {
             if (ModelState.IsValid)
             {
@@ -92,6 +95,25 @@ namespace examen2.Controllers
             }
             ViewBag.idCategoria = new SelectList(db.Categoria, "idCategoria", "nombre", restaurante.idCategoria);
             return View(restaurante);
+        }
+
+        public PartialViewResult ordenarRestaurante(string criterio)
+        {
+            var query = from r in db.Restaurante
+                        select r;
+            switch (criterio)
+            {
+                case "asc":
+                    query = query.OrderBy(x => x.Categoria.idCategoria);
+                    break;
+                case "desc":
+                    query = query.OrderByDescending(x => x.Categoria.idCategoria);
+                    break;
+                default:
+                    query = query.OrderBy(x => x.Categoria.idCategoria);
+                    break;
+            }
+            return PartialView("_ordenarRestaurante", query);
         }
 
         // GET: Restaurante/Delete/5

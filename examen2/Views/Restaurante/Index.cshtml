@@ -11,48 +11,78 @@
     @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precioxComensal)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria.nombre) |
+                @Ajax.ActionLink("Asc",//Texto para el usuario
+           "ordenarRestaurante",//Acción a llamar
+           new
+           {
+               criterio = "asc"
+           },//Parámetros a enviar
+           new AjaxOptions
+           {
+               UpdateTargetId = "resultado",
+               InsertionMode = InsertionMode.Replace,
+               HttpMethod = "GET"
+           }
+           ) |
+                @Ajax.ActionLink("Desc",//Texto para el usuario
+           "ordenarRestaurante",//Acción a llamar
+           new
+           {
+               criterio = "desc"
+           },//Parámetros a enviar
+           new AjaxOptions
+           {
+               UpdateTargetId = "resultado",
+               InsertionMode = InsertionMode.Replace,
+               HttpMethod = "GET"
+           }
+           )
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            $@Html.DisplayFor(modelItem => item.precioxComensal)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idRestaurante }) @*|
-            @Html.ActionLink("Detalles", "Details", new { id=item.idRestaurante })*@ 
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.idRestaurante })*@
-        </td>
-    </tr>
-}
-
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precioxComensal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="resultado">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.precioxComensal)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id=item.idRestaurante }) @*|
+                        @Html.ActionLink("Detalles", "Details", new { id=item.idRestaurante })*@
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.idRestaurante })*@
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
