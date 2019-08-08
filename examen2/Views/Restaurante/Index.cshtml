@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de Restaurantes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,9 +18,9 @@
         <th>
             @Html.DisplayNameFor(model => model.nombre)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.descripcion)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.direccion)
         </th>
@@ -38,19 +38,19 @@
         <td>
             @Html.DisplayFor(modelItem => item.nombre)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.direccion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.precioxComensal)
+            $@Html.DisplayFor(modelItem => item.precioxComensal)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idRestaurante }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idRestaurante }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idRestaurante })
+            @Html.ActionLink("Editar", "Edit", new { id=item.idRestaurante }) @*|
+            @Html.ActionLink("Detalles", "Details", new { id=item.idRestaurante })*@ 
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.idRestaurante })*@
         </td>
     </tr>
 }

@@ -20,7 +20,7 @@ namespace examen2.Models
 
         [Required]
         [StringLength(100)]
-        [Display(Name = "Nombre")]
+        [Display(Name = "Nombre Categoría")]
         public string nombre { get; set; }
 
         [Column(TypeName = "text")]
