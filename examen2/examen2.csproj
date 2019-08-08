@@ -159,6 +159,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\InicioRestauranteController.cs" />
+    <Compile Include="Controllers\RestauranteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,6 +184,11 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Restaurante\Create.cshtml" />
+    <Content Include="Views\Restaurante\Delete.cshtml" />
+    <Content Include="Views\Restaurante\Details.cshtml" />
+    <Content Include="Views\Restaurante\Edit.cshtml" />
+    <Content Include="Views\Restaurante\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
